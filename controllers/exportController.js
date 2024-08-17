@@ -9,6 +9,26 @@ const getExports = async (req, res) => {
     }
 }
 
+const postExports = async (req, res) => {
+    try {
+        const {
+            nameProduct,
+            price,
+            weight
+        } = req.body
+        const newExport = new Export ({
+            nameProduct,
+            price,
+            weight
+        })
+        await newExport.save()
+        res.status(201).json(newExport)
+    } catch (error) {
+        res.status(404).json({ msg: error })
+    }
+}
+
 module.exports = {
-    getExports
+    getExports,
+    postExports
 }

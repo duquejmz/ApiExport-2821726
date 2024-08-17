@@ -1,6 +1,6 @@
 const express = require('express')
 const dbConnect = require('../database/config')
-const { getExports } = require('../controllers/exportController')
+const { getExports, postExports } = require('../controllers/exportController')
 const port = process.env.PORT || 3000
 
 class Server {
@@ -23,7 +23,8 @@ class Server {
     }
 
     routes(){
-        this.app.get(this.pathExport, getExports)
+        this.app.get(this.pathExport, getExports),
+        this.app.post(this.pathExport, postExports)
     }
 
     listen() {
